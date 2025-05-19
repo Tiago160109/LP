@@ -14,6 +14,7 @@ public class Main {
         int numeroDePecas2 = scan.nextInt();
         float valorUnitario2 = scan.nextFloat();
         scan.close();
+        
         System.out.printf("VALOR A PAGAR: R$ %.2f%n", (numeroDePecas1 * valorUnitario1)+(numeroDePecas2 * valorUnitario2));
     }
  

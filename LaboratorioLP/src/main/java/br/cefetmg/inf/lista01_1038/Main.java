@@ -25,6 +25,7 @@ public class Main {
             total = quantos*1.5;
         }
         System.out.printf("Total: R$ %.2f%n", total);
+        
     }
  
 }

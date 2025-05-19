@@ -11,6 +11,7 @@ public class Main {
     scan.close();
     int SOMA = A + B;
     System.out.println("SOMA = " + SOMA);
+    
     }
  
 }

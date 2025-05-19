@@ -11,6 +11,7 @@ public class Main {
     int C = scan.nextInt();
     int D = scan.nextInt();
     System.out.printf("DIFERENCA = %d%n", (A*B)-(C*D));
+    
     }
  
 }

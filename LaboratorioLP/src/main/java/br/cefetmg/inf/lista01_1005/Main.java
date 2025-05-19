@@ -12,6 +12,7 @@ public class Main {
     B = B*7.5;
     scan.close();    
     System.out.printf("MEDIA = %.5f%n", (A+B)/11);
+    
     }
  
 }

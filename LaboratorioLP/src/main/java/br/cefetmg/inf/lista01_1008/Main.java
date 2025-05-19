@@ -11,6 +11,7 @@ public class Main {
         float salario = scan.nextFloat();
         System.out.printf("NUMBER = %d%n", numero);
         System.out.printf("SALARY = U$ %.2f%n", horas*salario);
+        
     }
  
 }

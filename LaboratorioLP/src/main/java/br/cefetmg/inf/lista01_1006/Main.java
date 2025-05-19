@@ -14,6 +14,7 @@ public class Main {
     C = C*5;
     System.out.printf("MEDIA = %.1f%n", (A+B+C)/10);
     scan.close();
+    
     }
  
 }

@@ -12,6 +12,7 @@ public class Main {
     scan.close();
     int X = A + B;
     System.out.println("X = " + X);
+    
     }
  
 }
