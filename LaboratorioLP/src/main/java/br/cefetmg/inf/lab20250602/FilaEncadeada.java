@@ -11,7 +11,7 @@ class No {
 public class FilaEncadeada {
     No inicio;
     No fim;
-
+    int tam;
     FilaEncadeada() {
         inicio = null;
         fim = null;
@@ -25,6 +25,7 @@ public class FilaEncadeada {
             fim.proximo = novoNo;
             fim = novoNo;
         }
+        tam++;
     }
     Integer desenfileirar() {
         if (estaVazia()) {
@@ -35,6 +36,7 @@ public class FilaEncadeada {
         if (inicio == null) {
             fim = null;
         }
+        tam--;
         return valor;
     }
 
@@ -44,7 +46,9 @@ public class FilaEncadeada {
         }
         return inicio.valor;
     }
-    
+    int tamanho(){
+        return tam;
+    }
     boolean estaVazia() {
         return inicio == null;
     }
