@@ -2,7 +2,8 @@ package br.cefetmg.inf.lab20250609;
 class No {
     int valor;
     No proximo;
-    No(int valor){
+
+    No(int valor) {
         this.valor = valor;
     }
 }
@@ -10,135 +11,133 @@ public class ListaEncadeada {
     No primeiro;
     No ultimo;
     int qtdElementos;
-    ListaEncadeada(){
+    
+    ListaEncadeada() {
         primeiro = null;
         ultimo = null;
         qtdElementos = 0;
     }
-    void inserirInicio(int valor){
+
+    void inserirInicio(int valor) {
         No novoNo = new No(valor);
-        qtdElementos++;
-        if(estaVazia()){
-            primeiro = novoNo;
-            ultimo = novoNo;
-        }
-        else{
+        if (estaVazia()) {
+            primeiro = ultimo = novoNo;
+        } else {
             novoNo.proximo = primeiro;
             primeiro = novoNo;
         }
-        
-    }
-    void inserirFim(int valor){
-        No novoNo = new No(valor);
         qtdElementos++;
-        if(estaVazia()){
-            primeiro = novoNo;
+    }
+
+    void inserirFim(int valor) {
+        No novoNo = new No(valor);
+        if (estaVazia()) {
+            primeiro = ultimo = novoNo;
+        } else {
+            ultimo.proximo = novoNo;
             ultimo = novoNo;
         }
-        else{
-            novoNo.proximo = ultimo;
-            ultimo = novoNo;       
-        }
-    }
-    void inserirPosicao(int valor, int posicao){
-        No novoNo = new No(valor);
         qtdElementos++;
-        if(estaVazia()){
-            primeiro = novoNo;
-            ultimo = novoNo;
-        }
-        else {
+    }
+
+    void inserirPosicao(int valor, int posicao) {
+        if (posicao < 0 || posicao > qtdElementos) return;
+
+        No novoNo = new No(valor);
+        if (posicao == 0) {
+            inserirInicio(valor);
+        } else if (posicao == qtdElementos) {
+            inserirFim(valor);
+        } else {
             No aux = primeiro;
             No anterior = null;
-
-            for(int i = 0; i < posicao; i++){
+            for (int i = 0; i < posicao; i++) {
                 anterior = aux;
                 aux = aux.proximo;
-            }   
-            if(anterior != null){ 
-                aux.proximo = anterior.proximo;
-                anterior.proximo = novoNo;
-                
             }
-            else {
-                novoNo.proximo = primeiro;
-                primeiro = novoNo;
-            }
-        }
-        
-    }
-    Integer removerInicio(){
-        if(estaVazia()){
-            return null;
-        }
-        No aux = primeiro;
-        Integer returno = primeiro.valor;
-        primeiro = aux.proximo;
-        aux.proximo = null;
-        return returno;
-    }
-    Integer removerFim(){
-        if(estaVazia()){
-            return null;
-        }
-        else{
-            return removerPosicao(qtdElementos - 1);
+            anterior.proximo = novoNo;
+            novoNo.proximo = aux;
+            qtdElementos++;
         }
     }
-    Integer removerPosicao(int posicao){
-        if(estaVazia()){
-            return null;
-        }
+
+    Integer removerInicio() {
+        if (estaVazia()) return null;
+
+        int valor = primeiro.valor;
+        primeiro = primeiro.proximo;
+        qtdElementos--;
+
+        if (primeiro == null) ultimo = null;
+
+        return valor;
+    }
+
+    Integer removerFim() {
+        return removerPosicao(qtdElementos - 1);
+    }
+
+    Integer removerPosicao(int posicao) {
+        if (posicao < 0 || posicao >= qtdElementos || estaVazia()) return null;
+
         No aux = primeiro;
         No anterior = null;
-        int returno;
-        for(int i = 0; i < posicao; i++){
+
+        for (int i = 0; i < posicao; i++) {
             anterior = aux;
             aux = aux.proximo;
         }
-        if(anterior != null) anterior.proximo = aux.proximo;
-        else {
+
+        if (anterior == null) {
             primeiro = aux.proximo;
-            aux.proximo = null;
+            if (primeiro == null) ultimo = null;
+        } else {
+            anterior.proximo = aux.proximo;
+            if (anterior.proximo == null) ultimo = anterior;
         }
+
         qtdElementos--;
-        returno = aux.valor;
-        return returno;
+        return aux.valor;
     }
-    Integer obterInicio(){
-        return obterPosicao(0);
-        
-    }
-    int obterFim(){
-        return obterPosicao(qtdElementos - 1);
-    }
-    Integer obterPosicao(int posicao){
-        if(estaVazia()){
+
+    Integer obterInicio() {
+        if (estaVazia()) {
             return null;
+        } else {
+            return primeiro.valor;
         }
+    }
+
+    Integer obterFim() {
+        if (estaVazia()) {
+            return null;
+        } else {
+            return ultimo.valor;
+        }
+    }
+
+    Integer obterPosicao(int posicao) {
+        if (posicao < 0 || posicao >= qtdElementos || estaVazia()) return null;
+
         No aux = primeiro;
-        int returno;
-        for(int i = 0; i < posicao; i++){
+        for (int i = 0; i < posicao; i++) {
             aux = aux.proximo;
         }
-        returno = aux.valor;
-        return returno;
+        return aux.valor;
     }
-    int tamanho(){
+
+    int tamanho() {
         return qtdElementos;
     }
-    boolean estaVazia(){
+
+    boolean estaVazia() {
         return qtdElementos == 0;
     }
-    Integer pesquisar(int valor){
-        if(estaVazia()){
-            return null;
-        }
+
+    Integer pesquisar(int valor) {
         No aux = primeiro;
-        for(int i = 0; i < qtdElementos; i++){
-            if(aux.valor == valor){
-                return i;
-            }
+        for (int i = 0; i < qtdElementos; i++) {
+            if (aux.valor == valor) return i;
             aux = aux.proximo;
         }
         return null;
