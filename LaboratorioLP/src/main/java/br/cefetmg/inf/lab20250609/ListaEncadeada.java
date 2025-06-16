@@ -1,15 +1,15 @@
 package br.cefetmg.inf.lab20250609;
-class No {
+class Laco {
     int valor;
-    No proximo;
+    Laco proximo;
 
-    No(int valor) {
+    Laco(int valor) {
         this.valor = valor;
     }
 }
 public class ListaEncadeada {
-    No primeiro;
-    No ultimo;
+    Laco primeiro;
+    Laco ultimo;
     int qtdElementos;
     
     ListaEncadeada() {
@@ -19,23 +19,23 @@ public class ListaEncadeada {
     }
 
     void inserirInicio(int valor) {
-        No novoNo = new No(valor);
+        Laco novoLaco = new Laco(valor);
         if (estaVazia()) {
-            primeiro = ultimo = novoNo;
+            primeiro = ultimo = novoLaco;
         } else {
-            novoNo.proximo = primeiro;
-            primeiro = novoNo;
+            novoLaco.proximo = primeiro;
+            primeiro = novoLaco;
         }
         qtdElementos++;
     }
 
     void inserirFim(int valor) {
-        No novoNo = new No(valor);
+        Laco novoLaco = new Laco(valor);
         if (estaVazia()) {
-            primeiro = ultimo = novoNo;
+            primeiro = ultimo = novoLaco;
         } else {
-            ultimo.proximo = novoNo;
-            ultimo = novoNo;
+            ultimo.proximo = novoLaco;
+            ultimo = novoLaco;
         }
         qtdElementos++;
     }
@@ -43,20 +43,20 @@ public class ListaEncadeada {
     void inserirPosicao(int valor, int posicao) {
         if (posicao < 0 || posicao > qtdElementos) return;
 
-        No novoNo = new No(valor);
+        Laco novoLaco = new Laco(valor);
         if (posicao == 0) {
             inserirInicio(valor);
         } else if (posicao == qtdElementos) {
             inserirFim(valor);
         } else {
-            No aux = primeiro;
-            No anterior = null;
+            Laco aux = primeiro;
+            Laco anterior = null;
             for (int i = 0; i < posicao; i++) {
                 anterior = aux;
                 aux = aux.proximo;
             }
-            anterior.proximo = novoNo;
-            novoNo.proximo = aux;
+            anterior.proximo = novoLaco;
+            novoLaco.proximo = aux;
             qtdElementos++;
         }
     }
@@ -80,8 +80,8 @@ public class ListaEncadeada {
     Integer removerPosicao(int posicao) {
         if (posicao < 0 || posicao >= qtdElementos || estaVazia()) return null;
 
-        No aux = primeiro;
-        No anterior = null;
+        Laco aux = primeiro;
+        Laco anterior = null;
 
         for (int i = 0; i < posicao; i++) {
             anterior = aux;
@@ -119,7 +119,7 @@ public class ListaEncadeada {
     Integer obterPosicao(int posicao) {
         if (posicao < 0 || posicao >= qtdElementos || estaVazia()) return null;
 
-        No aux = primeiro;
+        Laco aux = primeiro;
         for (int i = 0; i < posicao; i++) {
             aux = aux.proximo;
         }
@@ -135,7 +135,7 @@ public class ListaEncadeada {
     }
 
     Integer pesquisar(int valor) {
-        No aux = primeiro;
+        Laco aux = primeiro;
         for (int i = 0; i < qtdElementos; i++) {
             if (aux.valor == valor) return i;
             aux = aux.proximo;
