@@ -1,13 +1,13 @@
 package br.cefetmg.inf.lab20250609;
 class Laco {
-    int valor;
+    int item;
     Laco proximo;
 
-    Laco(int valor) {
-        this.valor = valor;
+    Laco(int item) {
+        this.item = item;
     }
 }
-public class ListaEncadeada {
+public class ListaEncadeada implements Lista{
     Laco primeiro;
     Laco ultimo;
     int qtdElementos;
@@ -18,8 +18,8 @@ public class ListaEncadeada {
         qtdElementos = 0;
     }
 
-    void inserirInicio(int valor) {
-        Laco novoLaco = new Laco(valor);
+    public void inserirInicio(int item) {
+        Laco novoLaco = new Laco(item);
         if (estaVazia()) {
             primeiro = ultimo = novoLaco;
         } else {
@@ -29,8 +29,8 @@ public class ListaEncadeada {
         qtdElementos++;
     }
 
-    void inserirFim(int valor) {
-        Laco novoLaco = new Laco(valor);
+    public void inserirFim(int item) {
+        Laco novoLaco = new Laco(item);
         if (estaVazia()) {
             primeiro = ultimo = novoLaco;
         } else {
@@ -40,14 +40,14 @@ public class ListaEncadeada {
         qtdElementos++;
     }
 
-    void inserirPosicao(int valor, int posicao) {
-        if (posicao < 0 || posicao > qtdElementos) return;
+    public boolean inserirPosicao(int posicao, int item) {
+        if (posicao < 0 || posicao > qtdElementos) return false;
 
-        Laco novoLaco = new Laco(valor);
+        Laco novoLaco = new Laco(item);
         if (posicao == 0) {
-            inserirInicio(valor);
+            inserirInicio(item);
         } else if (posicao == qtdElementos) {
-            inserirFim(valor);
+            inserirFim(item);
         } else {
             Laco aux = primeiro;
             Laco anterior = null;
@@ -59,25 +59,26 @@ public class ListaEncadeada {
             novoLaco.proximo = aux;
             qtdElementos++;
         }
+        return true;
     }
 
-    Integer removerInicio() {
+    public Integer removerInicio() {
         if (estaVazia()) return null;
 
-        int valor = primeiro.valor;
+        int item = primeiro.item;
         primeiro = primeiro.proximo;
         qtdElementos--;
 
         if (primeiro == null) ultimo = null;
 
-        return valor;
+        return item;
     }
 
-    Integer removerFim() {
+    public Integer removerFim() {
         return removerPosicao(qtdElementos - 1);
     }
 
-    Integer removerPosicao(int posicao) {
+    public Integer removerPosicao(int posicao) {
         if (posicao < 0 || posicao >= qtdElementos || estaVazia()) return null;
 
         Laco aux = primeiro;
@@ -97,49 +98,49 @@ public class ListaEncadeada {
         }
 
         qtdElementos--;
-        return aux.valor;
+        return aux.item;
     }
 
-    Integer obterInicio() {
+    public Integer obterInicio() {
         if (estaVazia()) {
             return null;
         } else {
-            return primeiro.valor;
+            return primeiro.item;
         }
     }
 
-    Integer obterFim() {
+    public Integer obterFim() {
         if (estaVazia()) {
             return null;
         } else {
-            return ultimo.valor;
+            return ultimo.item;
         }
     }
 
-    Integer obterPosicao(int posicao) {
+    public Integer obterPosicao(int posicao) {
         if (posicao < 0 || posicao >= qtdElementos || estaVazia()) return null;
 
         Laco aux = primeiro;
         for (int i = 0; i < posicao; i++) {
             aux = aux.proximo;
         }
-        return aux.valor;
+        return aux.item;
     }
 
-    int tamanho() {
+    public int tamanho() {
         return qtdElementos;
     }
 
-    boolean estaVazia() {
+    public boolean estaVazia() {
         return qtdElementos == 0;
     }
 
-    Integer pesquisar(int valor) {
+    public int pesquisar(int item) {
         Laco aux = primeiro;
         for (int i = 0; i < qtdElementos; i++) {
-            if (aux.valor == valor) return i;
+            if (aux.item == item) return i;
             aux = aux.proximo;
         }
-        return null;
+        return -1;
     }
 }

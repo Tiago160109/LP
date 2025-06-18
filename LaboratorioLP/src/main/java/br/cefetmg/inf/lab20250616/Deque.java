@@ -1,95 +1,60 @@
 package br.cefetmg.inf.lab20250616;
-class No {
-    int valor;
-    No proximo;
-    No anterior;
 
-    No(int valor) {
-        this.valor = valor;
-    }
-}
-public class Deque {
-    private No inicio;
-    private No fim;
-    private int tam;
-    Deque() {
-        inicio = null;
-        fim = null;
-        tam = 0;
-    }
-    public void inserirNoInicio(int item) {
-        No novo = new No(item);
-        if(estaVazia()) {            
-            inicio = novo;
-            fim = novo;
-        }
-        else {
-            novo.proximo = inicio;
-            inicio.anterior = novo;
-            inicio = novo;
-        }
-        tam++;
-    }
-    public void inserirNoFim(int item) {
-        No novo = new No(item);
-        if(estaVazia()) {
-            inicio = novo;
-            fim = novo;
-        }
-        else {
-            fim.proximo = novo;
-            novo.anterior = fim;
-            fim = novo;
-        }
-        tam++;
-    }
+public interface Deque {
 
-    public Integer removerPrimeiro() {
-        if (estaVazia()) return null;
-        int valor = inicio.valor;
-        if(inicio == fim) {
-            inicio = null;
-            fim = null;
-        }
-        else {
-            inicio = inicio.proximo;
-            inicio.anterior = null;
-        }
-        tam--;
-        return valor;
-    }
+    /**
+     * Insere um elemento no inicio da deque.
+     * 
+     * @param item o elemento que será adicionado.
+     */
+    public void inserirNoInicio(int item);
 
-    public Integer removerUltimo() {
-        if (estaVazia()) return null;
-        int valor = fim.valor;
-        if(inicio == fim) {
-            inicio = null;
-            fim = null;
-        }
-        else {
-            fim = fim.anterior;
-            fim.proximo = null;
-        }
-        tam--;
-        return valor;
-    }
+    /**
+     * Insere um elemento no final da deque.
+     * 
+     * @param item o elemento que será adicionado.
+     */
+    public void inserirNoFim(int item);
     
-    public Integer obterPrimeiro() {
-        if (estaVazia()) return null;
-        int valor = inicio.valor;
-        return valor;
-    }
-    public Integer obterUltimo() {
-        if (estaVazia()) return null;
-        int valor = fim.valor;
-        return valor;
-    }
-
-    public boolean estaVazia() {
-        return tam == 0;
-    }
+    /**
+     * Remove o elemento no início da deque.
+     * 
+     * @return o elemento no início da deque ou {@code null} se a deque
+     * estiver vazia.
+     */
+    public Integer removerPrimeiro();
     
-    public int tamanho() {
-        return tam;
-    }
+    /**
+     * Remove o elemento no final da deque.
+     * 
+     * @return o elemento no final da deque ou {@code null} se a deque
+     * estiver vazia.
+     */
+    public Integer removerUltimo();
+    
+    /**
+     * Retorna, sem remover, o elemento no início da deque.
+     * 
+     * @return o primeiro elemento da deque ou {@code null} se a deque
+     * estiver vazia.
+     */    
+    public Integer obterPrimeiro();
+
+    /**
+     * Retorna, sem remover, o elemento no final da deque.
+     * 
+     * @return o último elemento da deque ou {@code null} se a deque
+     * estiver vazia.
+     */    
+    public Integer obterUltimo();
+    
+    /** 
+     * @return {@code false} se a deque possuir elementos.
+     */
+    public boolean estaVazia();
+    
+    /** 
+     * @return o número de elementos presentes na deque.
+     */
+    public int tamanho();
 }

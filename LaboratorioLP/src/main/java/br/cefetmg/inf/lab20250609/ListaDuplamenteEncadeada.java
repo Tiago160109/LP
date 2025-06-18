@@ -1,17 +1,17 @@
 package br.cefetmg.inf.lab20250609;
 class No {
-    int valor;
+    int item;
     No anterior;
     No proximo;
 
-    No(int valor) {
-        this.valor = valor;
+    No(int item) {
+        this.item = item;
         this.anterior = null;
         this.proximo = null;
     }
 }
 
-public class ListaDuplamenteEncadeada {
+public class ListaDuplamenteEncadeada implements Lista{
     private No inicio;
     private No fim;
     private int tamanho;
@@ -30,8 +30,8 @@ public class ListaDuplamenteEncadeada {
         return tamanho;
     }
 
-    public void inserirNoInicio(int valor) {
-        No novo = new No(valor);
+    public void inserirInicio(int item) {
+        No novo = new No(item);
         if (estaVazia()) {
             inicio = fim = novo;
         } else {
@@ -42,8 +42,8 @@ public class ListaDuplamenteEncadeada {
         tamanho++;
     }
 
-    public void inserirNoFim(int valor) {
-        No novo = new No(valor);
+    public void inserirFim(int item) {
+        No novo = new No(item);
         if (estaVazia()) {
             inicio = fim = novo;
         } else {
@@ -54,14 +54,14 @@ public class ListaDuplamenteEncadeada {
         tamanho++;
     }
 
-    public boolean inserirNaPosicao(int posicao, int valor) {
+    public boolean inserirPosicao(int posicao, int item) {
         if (posicao < 0 || posicao > tamanho) return false;
         if (posicao == 0) {
-            inserirNoInicio(valor);
+            inserirInicio(item);
         } else if (posicao == tamanho) {
-            inserirNoFim(valor);
+            inserirFim(item);
         } else {
-            No novo = new No(valor);
+            No novo = new No(item);
             No atual = inicio;
             for (int i = 0; i < posicao; i++) {
                 atual = atual.proximo;
@@ -75,9 +75,9 @@ public class ListaDuplamenteEncadeada {
         return true;
     }
 
-    public Integer removerDoInicio() {
+    public Integer removerInicio() {
         if (estaVazia()) return null;
-        int valor = inicio.valor;
+        int item = inicio.item;
         if (inicio == fim) {
             inicio = fim = null;
         } else {
@@ -85,12 +85,12 @@ public class ListaDuplamenteEncadeada {
             inicio.anterior = null;
         }
         tamanho--;
-        return valor;
+        return item;
     }
 
-    public Integer removerDoFim() {
+    public Integer removerFim() {
         if (estaVazia()) return null;
-        int valor = fim.valor;
+        int item = fim.item;
         if (inicio == fim) {
             inicio = fim = null;
         } else {
@@ -98,30 +98,30 @@ public class ListaDuplamenteEncadeada {
             fim.proximo = null;
         }
         tamanho--;
-        return valor;
+        return item;
     }
 
-    public Integer removerDaPosicao(int posicao) {
+    public Integer removerPosicao(int posicao) {
         if (posicao < 0 || posicao >= tamanho) return null;
-        if (posicao == 0) return removerDoInicio();
-        if (posicao == tamanho - 1) return removerDoFim();
+        if (posicao == 0) return removerInicio();
+        if (posicao == tamanho - 1) return removerFim();
 
         No atual = inicio;
         for (int i = 0; i < posicao; i++) {
             atual = atual.proximo;
         }
-        int valor = atual.valor;
+        int item = atual.item;
         atual.anterior.proximo = atual.proximo;
         atual.proximo.anterior = atual.anterior;
         tamanho--;
-        return valor;
+        return item;
     }
 
     public Integer obterInicio() {
         if (estaVazia()) {
             return null;
         } else {
-            return inicio.valor;
+            return inicio.item;
         }
     }
 
@@ -129,7 +129,7 @@ public class ListaDuplamenteEncadeada {
         if (estaVazia()) {
             return null;
         } else {
-            return fim.valor;
+            return fim.item;
         }
     }
 
@@ -139,14 +139,14 @@ public class ListaDuplamenteEncadeada {
         for (int i = 0; i < posicao; i++) {
             atual = atual.proximo;
         }
-        return atual.valor;
+        return atual.item;
     }
 
-    public int pesquisar(int valor) {
+    public int pesquisar(int item) {
         No atual = inicio;
         int posicao = 0;
         while (atual != null) {
-            if (atual.valor == valor) return posicao;
+            if (atual.item == item) return posicao;
             atual = atual.proximo;
             posicao++;
         }
@@ -156,7 +156,7 @@ public class ListaDuplamenteEncadeada {
     public void imprimir() {
         No atual = inicio;
         while (atual != null) {
-            System.out.printf("%d ", atual.valor);
+            System.out.printf("%d ", atual.item);
             atual = atual.proximo;
         }
         System.out.println();

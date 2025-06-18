@@ -1,6 +1,6 @@
 package br.cefetmg.inf.lab20250609;
 
-public class ListaArray {
+public class ListaArray implements Lista{
     int[] elementos;
     int tamanho;
 
@@ -9,31 +9,32 @@ public class ListaArray {
         tamanho = 0;
     }
 
-    void inserirInicio(int valor) {
+    public void inserirInicio(int item) {
         aumentarTamanho();
         for (int i = tamanho; i > 0; i--) {
             elementos[i] = elementos[i - 1];
         }
-        elementos[0] = valor;
+        elementos[0] = item;
         tamanho++;
     }
 
-    void inserirFim(int valor) {
+    public void inserirFim(int item) {
         aumentarTamanho();
-        elementos[tamanho++] = valor;
+        elementos[tamanho++] = item;
     }
 
-    void inserirPosicao(int valor, int posicao) {
-        if (posicao < 0 || posicao > tamanho) return;
+    public boolean inserirPosicao(int posicao, int item) {
+        if (posicao < 0 || posicao > tamanho) return false;
         aumentarTamanho();
         for (int i = tamanho; i > posicao; i--) {
             elementos[i] = elementos[i - 1];
         }
-        elementos[posicao] = valor;
+        elementos[posicao] = item;
         tamanho++;
+        return true;
     }
 
-    Integer removerInicio() {
+    public Integer removerInicio() {
         if (estaVazia()) return null;
         int removido = elementos[0];
         for (int i = 0; i < tamanho - 1; i++) {
@@ -43,12 +44,12 @@ public class ListaArray {
         return removido;
     }
 
-    Integer removerFim() {
+    public Integer removerFim() {
         if (estaVazia()) return null;
         return elementos[--tamanho];
     }
 
-    Integer removerPosicao(int posicao) {
+    public Integer removerPosicao(int posicao) {
         if (estaVazia() || posicao < 0 || posicao >= tamanho) return null;
         int removido = elementos[posicao];
         for (int i = posicao; i < tamanho - 1; i++) {
@@ -58,31 +59,31 @@ public class ListaArray {
         return removido;
     }
 
-    Integer obterInicio() {
+    public Integer obterInicio() {
         return estaVazia() ? null : elementos[0];
     }
 
-    Integer obterFim() {
+    public Integer obterFim() {
         return estaVazia() ? null : elementos[tamanho - 1];
     }
 
-    Integer obterPosicao(int posicao) {
+    public Integer obterPosicao(int posicao) {
         if (estaVazia() || posicao < 0 || posicao >= tamanho) return null;
         return elementos[posicao];
     }
 
-    Integer pesquisar(int valor) {
+    public int pesquisar(int item) {
         for (int i = 0; i < tamanho; i++) {
-            if (elementos[i] == valor) return i;
+            if (elementos[i] == item) return i;
         }
-        return null;
+        return -1;
     }
 
-    int tamanho() {
+    public int tamanho() {
         return tamanho;
     }
 
-    boolean estaVazia() {
+    public boolean estaVazia() {
         return tamanho == 0;
     }
 
