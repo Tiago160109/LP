@@ -1,17 +1,19 @@
-package br.cefetmg.inf.lab20250616;
-class No2 {
-    int valor;
-    No2 proximo;
-    No2 anterior;
+package br.cefetmg.inf.lab20250623;
 
-    No2(int valor) {
-        this.valor = valor;
-    }
-}
 public class DequeEncadeado implements Deque {
-    private No2 inicio;
-    private No2 fim;
+    private No inicio;
+    private No fim;
     private int tam;
+    
+    private class No {
+        int valor;
+        No proximo;
+        No anterior;
+
+        No(int valor) {
+            this.valor = valor;
+        }
+    }
     
     DequeEncadeado() {
         inicio = null;
@@ -20,7 +22,7 @@ public class DequeEncadeado implements Deque {
     }
     
     public void inserirNoInicio(int item) {
-        No2 novo = new No2(item);
+        No novo = new No(item);
         if(estaVazia()) {            
             inicio = novo;
             fim = novo;
@@ -33,7 +35,7 @@ public class DequeEncadeado implements Deque {
         tam++;
     }
     public void inserirNoFim(int item) {
-        No2 novo = new No2(item);
+        No novo = new No(item);
         if(estaVazia()) {
             inicio = novo;
             fim = novo;
