@@ -29,114 +29,57 @@ public class DequeEncadeadoTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of inserirNoInicio method, of class DequeEncadeado.
-     */
     @Test
     public void testInserirNoInicio() {
-        System.out.println("inserirNoInicio");
-        int item = 0;
-        DequeEncadeado instance = new DequeEncadeado();
-        instance.inserirNoInicio(item);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        DequeCircular instance = new DequeCircular();
+        instance.inserirNoInicio(10);
+        assertEquals(1, instance.tamanho());
+        assertEquals(10, instance.obterPrimeiro());
+        assertEquals(10, instance.obterUltimo());
     }
 
-    /**
-     * Test of inserirNoFim method, of class DequeEncadeado.
-     */
     @Test
     public void testInserirNoFim() {
-        System.out.println("inserirNoFim");
-        int item = 0;
-        DequeEncadeado instance = new DequeEncadeado();
-        instance.inserirNoFim(item);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        DequeCircular instance = new DequeCircular();
+        instance.inserirNoFim(20);
+        assertEquals(1, instance.tamanho());
+        assertEquals(20, instance.obterPrimeiro());
+        assertEquals(20, instance.obterUltimo());
     }
 
-    /**
-     * Test of removerPrimeiro method, of class DequeEncadeado.
-     */
     @Test
     public void testRemoverPrimeiro() {
-        System.out.println("removerPrimeiro");
-        DequeEncadeado instance = new DequeEncadeado();
-        Integer expResult = null;
-        Integer result = instance.removerPrimeiro();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        DequeCircular instance = new DequeCircular();
+        instance.inserirNoFim(30);
+        Integer removed = instance.removerPrimeiro();
+        assertEquals(30, removed);
+        assertTrue(instance.estaVazia());
     }
 
-    /**
-     * Test of removerUltimo method, of class DequeEncadeado.
-     */
     @Test
     public void testRemoverUltimo() {
-        System.out.println("removerUltimo");
-        DequeEncadeado instance = new DequeEncadeado();
-        Integer expResult = null;
-        Integer result = instance.removerUltimo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        DequeCircular instance = new DequeCircular();
+        instance.inserirNoInicio(40);
+        Integer removed = instance.removerUltimo();
+        assertEquals(40, removed);
+        assertTrue(instance.estaVazia());
     }
 
-    /**
-     * Test of obterPrimeiro method, of class DequeEncadeado.
-     */
-    @Test
-    public void testObterPrimeiro() {
-        System.out.println("obterPrimeiro");
-        DequeEncadeado instance = new DequeEncadeado();
-        Integer expResult = null;
-        Integer result = instance.obterPrimeiro();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of obterUltimo method, of class DequeEncadeado.
-     */
-    @Test
-    public void testObterUltimo() {
-        System.out.println("obterUltimo");
-        DequeEncadeado instance = new DequeEncadeado();
-        Integer expResult = null;
-        Integer result = instance.obterUltimo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of estaVazia method, of class DequeEncadeado.
-     */
     @Test
     public void testEstaVazia() {
-        System.out.println("estaVazia");
-        DequeEncadeado instance = new DequeEncadeado();
-        boolean expResult = false;
-        boolean result = instance.estaVazia();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        DequeCircular instance = new DequeCircular();
+        assertTrue(instance.estaVazia());
+        instance.inserirNoInicio(50);
+        assertFalse(instance.estaVazia());
     }
 
-    /**
-     * Test of tamanho method, of class DequeEncadeado.
-     */
     @Test
     public void testTamanho() {
-        System.out.println("tamanho");
-        DequeEncadeado instance = new DequeEncadeado();
-        int expResult = 0;
-        int result = instance.tamanho();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        DequeCircular instance = new DequeCircular();
+        assertEquals(0, instance.tamanho());
+        instance.inserirNoInicio(60);
+        instance.inserirNoFim(70);
+        assertEquals(2, instance.tamanho());
     }
     
 }

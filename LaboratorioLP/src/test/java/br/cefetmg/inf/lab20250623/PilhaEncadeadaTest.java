@@ -8,93 +8,81 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PilhaEncadeadaTest {
-    
+
     public PilhaEncadeadaTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
 
-    /**
-     * Test of empilhar method, of class PilhaEncadeada.
-     */
     @Test
     public void testEmpilhar() {
-        System.out.println("empilhar");
-        int item = 0;
-        PilhaEncadeada instance = new PilhaEncadeada();
-        instance.empilhar(item);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        PilhaArray pilha = new PilhaArray();
+        pilha.empilhar(10);
+        assertEquals(1, pilha.tamanho());
+        assertEquals(10, pilha.obterNoTopo());
     }
 
-    /**
-     * Test of desempilhar method, of class PilhaEncadeada.
-     */
     @Test
     public void testDesempilhar() {
-        System.out.println("desempilhar");
-        PilhaEncadeada instance = new PilhaEncadeada();
-        Integer expResult = null;
-        Integer result = instance.desempilhar();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        PilhaArray pilha = new PilhaArray();
+
+        assertNull(pilha.desempilhar());
+
+        pilha.empilhar(5);
+        pilha.empilhar(20);
+        assertEquals(20, pilha.desempilhar());
+        assertEquals(1, pilha.tamanho());
+        assertEquals(5, pilha.obterNoTopo());
     }
 
-    /**
-     * Test of obterNoTopo method, of class PilhaEncadeada.
-     */
     @Test
     public void testObterNoTopo() {
-        System.out.println("obterNoTopo");
-        PilhaEncadeada instance = new PilhaEncadeada();
-        Integer expResult = null;
-        Integer result = instance.obterNoTopo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        PilhaArray pilha = new PilhaArray();
+        assertNull(pilha.obterNoTopo());
+
+        pilha.empilhar(30);
+        assertEquals(30, pilha.obterNoTopo());
+
+        pilha.empilhar(40);
+        assertEquals(40, pilha.obterNoTopo());
     }
 
-    /**
-     * Test of estaVazia method, of class PilhaEncadeada.
-     */
     @Test
     public void testEstaVazia() {
-        System.out.println("estaVazia");
-        PilhaEncadeada instance = new PilhaEncadeada();
-        boolean expResult = false;
-        boolean result = instance.estaVazia();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        PilhaArray pilha = new PilhaArray();
+        assertTrue(pilha.estaVazia());
+
+        pilha.empilhar(1);
+        assertFalse(pilha.estaVazia());
+
+        pilha.desempilhar();
+        assertTrue(pilha.estaVazia());
     }
 
-    /**
-     * Test of tamanho method, of class PilhaEncadeada.
-     */
     @Test
     public void testTamanho() {
-        System.out.println("tamanho");
-        PilhaEncadeada instance = new PilhaEncadeada();
-        int expResult = 0;
-        int result = instance.tamanho();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        PilhaArray pilha = new PilhaArray();
+        assertEquals(0, pilha.tamanho());
+
+        pilha.empilhar(100);
+        pilha.empilhar(200);
+        assertEquals(2, pilha.tamanho());
+
+        pilha.desempilhar();
+        assertEquals(1, pilha.tamanho());
     }
-    
 }

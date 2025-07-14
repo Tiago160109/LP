@@ -8,93 +8,74 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FilaCircularTest {
-    
+
     public FilaCircularTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
 
-    /**
-     * Test of enfileirar method, of class FilaCircular.
-     */
     @Test
     public void testEnfileirar() {
-        System.out.println("enfileirar");
-        int item = 0;
-        FilaCircular instance = new FilaCircular();
-        instance.enfileirar(item);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        FilaCircular fila = new FilaCircular();
+        fila.enfileirar(0);
+        assertEquals(1, fila.tamanho());
+        assertEquals(0, fila.obterNoInicio());
     }
 
-    /**
-     * Test of desenfileirar method, of class FilaCircular.
-     */
     @Test
     public void testDesenfileirar() {
-        System.out.println("desenfileirar");
-        FilaCircular instance = new FilaCircular();
-        Integer expResult = null;
-        Integer result = instance.desenfileirar();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        FilaCircular fila = new FilaCircular();
+        assertNull(fila.desenfileirar());
+
+        fila.enfileirar(10);
+        fila.enfileirar(20);
+        assertEquals(10, fila.desenfileirar());
+        assertEquals(1, fila.tamanho());
+        assertEquals(20, fila.obterNoInicio());
     }
 
-    /**
-     * Test of tamanho method, of class FilaCircular.
-     */
     @Test
     public void testTamanho() {
-        System.out.println("tamanho");
-        FilaCircular instance = new FilaCircular();
-        int expResult = 0;
-        int result = instance.tamanho();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        FilaCircular fila = new FilaCircular();
+        assertEquals(0, fila.tamanho());
+        fila.enfileirar(5);
+        fila.enfileirar(15);
+        assertEquals(2, fila.tamanho());
+        fila.desenfileirar();
+        assertEquals(1, fila.tamanho());
     }
 
-    /**
-     * Test of obterNoInicio method, of class FilaCircular.
-     */
     @Test
     public void testObterNoInicio() {
-        System.out.println("obterNoInicio");
-        FilaCircular instance = new FilaCircular();
-        Integer expResult = null;
-        Integer result = instance.obterNoInicio();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        FilaCircular fila = new FilaCircular();
+        assertNull(fila.obterNoInicio());
+        fila.enfileirar(42);
+        assertEquals(42, fila.obterNoInicio());
+        fila.enfileirar(99);
+        assertEquals(42, fila.obterNoInicio());
     }
 
-    /**
-     * Test of estaVazia method, of class FilaCircular.
-     */
     @Test
     public void testEstaVazia() {
-        System.out.println("estaVazia");
-        FilaCircular instance = new FilaCircular();
-        boolean expResult = false;
-        boolean result = instance.estaVazia();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        FilaCircular fila = new FilaCircular();
+        assertTrue(fila.estaVazia());
+        fila.enfileirar(1);
+        assertFalse(fila.estaVazia());
+        fila.desenfileirar();
+        assertTrue(fila.estaVazia());
     }
-    
 }
