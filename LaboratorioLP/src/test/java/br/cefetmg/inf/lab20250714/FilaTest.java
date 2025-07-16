@@ -9,7 +9,6 @@ public class FilaTest {
 
     @BeforeEach
     public void setUp() {
-        fila = new FilaImpl();
     }
 
     @Test
@@ -22,6 +21,7 @@ public class FilaTest {
     @Test
     public void testDesenfileirar() {
         fila.enfileirar(20);
+        assertFalse(fila.estaVazia());
         Object removido = fila.desenfileirar();
         assertEquals(20, removido);
         assertTrue(fila.estaVazia());
@@ -61,34 +61,5 @@ public class FilaTest {
 
         assertEquals(80, fila.obterNoInicio());
         assertEquals(2, fila.tamanho());
-    }
-
-    public class FilaImpl implements Fila {
-        private java.util.Queue<Object> dados = new java.util.LinkedList<>();
-
-        @Override
-        public void enfileirar(Object item) {
-            dados.add(item);
-        }
-
-        @Override
-        public Object desenfileirar() {
-            return dados.poll();
-        }
-
-        @Override
-        public Object obterNoInicio() {
-            return dados.peek();
-        }
-
-        @Override
-        public boolean estaVazia() {
-            return dados.isEmpty();
-        }
-
-        @Override
-        public int tamanho() {
-            return dados.size();
-        }
     }
 }
