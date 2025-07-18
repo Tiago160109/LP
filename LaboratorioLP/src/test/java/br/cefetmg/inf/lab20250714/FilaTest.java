@@ -5,11 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class FilaTest {
      public abstract Fila getInstance();
-
-
+     private Fila fila;
+     @BeforeEach
+     public void setUp(){
+         fila = getInstance();
+     }
     @Test
     public void testEnfileirarEObterNoInicio() {
-        Fila fila = getInstance();
         fila.enfileirar(10);
         assertEquals(10, fila.obterNoInicio());
         assertEquals(1, fila.tamanho());
@@ -17,7 +19,6 @@ public abstract class FilaTest {
 
     @Test
     public void testDesenfileirar() {
-        Fila fila = getInstance();
         fila.enfileirar(20);
         assertFalse(fila.estaVazia());
         Object removido = fila.desenfileirar();
@@ -27,7 +28,6 @@ public abstract class FilaTest {
 
     @Test
     public void testObterNoInicioSemRemover() {
-        Fila fila = getInstance();
         fila.enfileirar(30);
         assertEquals(30, fila.obterNoInicio());
         assertEquals(1, fila.tamanho());
@@ -35,7 +35,6 @@ public abstract class FilaTest {
 
     @Test
     public void testEstaVazia() {
-        Fila fila = getInstance();
         assertTrue(fila.estaVazia());
         fila.enfileirar(40);
         assertFalse(fila.estaVazia());
@@ -43,7 +42,6 @@ public abstract class FilaTest {
 
     @Test
     public void testTamanho() {
-        Fila fila = getInstance();
         assertEquals(0, fila.tamanho());
         fila.enfileirar(50);
         fila.enfileirar(60);
@@ -52,7 +50,6 @@ public abstract class FilaTest {
 
     @Test
     public void testFilaComMultiplosElementos() {
-        Fila fila = getInstance();
         fila.enfileirar(70);
         fila.enfileirar(80);
         fila.enfileirar(90);
