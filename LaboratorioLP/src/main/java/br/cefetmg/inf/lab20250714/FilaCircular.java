@@ -25,6 +25,7 @@ public class FilaCircular extends AbstractFila{
             fim = novoNo;
             fim.proximo = inicio;
         }
+        tamanho++;
     }
 
     @Override
@@ -41,7 +42,7 @@ public class FilaCircular extends AbstractFila{
             inicio = inicio.proximo;
             fim.proximo = inicio; 
         }
-
+        tamanho--;
         return item;
     }
     @Override

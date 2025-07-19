@@ -3,7 +3,6 @@ package br.cefetmg.inf.lab20250714;
 public class FilaEncadeada extends AbstractFila{
     No inicio;
     No fim;
-    int tam;
     private class No {
         Object item;
         No proximo;
@@ -22,7 +21,7 @@ public class FilaEncadeada extends AbstractFila{
             fim.proximo = novoNo;
             fim = novoNo;
         }
-        tam++;
+        tamanho++;
     }
     @Override
     public Object desenfileirar() {
@@ -34,7 +33,7 @@ public class FilaEncadeada extends AbstractFila{
         if (inicio == null) {
             fim = null;
         }
-        tam--;
+        tamanho--;
         return item;
     }
 
