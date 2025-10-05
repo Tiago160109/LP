@@ -113,5 +113,14 @@ public class DequeEncadeado<T> implements Deque<T> {
     public int tamanho() {
         return tam;
     }
-
+    public Object[] toArray() {
+        Object[] array = new Object[tam];
+        No<T> atual = inicio;
+        int i = 0;
+        while (atual != null) {
+            array[i++] = atual.valor;
+            atual = atual.proximo;
+        }
+        return array;
+    }
 }

@@ -7,13 +7,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DequeEncadeadoTest {
-    
-    private DequeEncadeado<Integer> deque;
+public class DequeArrayTest {
+    private DequeArray<Integer> deque;
 
     @BeforeEach
     public void setUp() {
-        deque = new DequeEncadeado<>();
+        deque = new DequeArray<>();
     }
 
     @Test
@@ -106,4 +105,3 @@ public class DequeEncadeadoTest {
         assertArrayEquals(new Object[]{"A", "B", "C"}, arr);
     }
 }
-
